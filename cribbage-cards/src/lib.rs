@@ -2,9 +2,13 @@
 mod test;
 
 mod behavior;
+mod combs;
 mod display;
+mod score;
 
-#[derive(Clone, Copy, Debug)]
+pub use score::score;
+
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub enum Value {
     Ace,
     Two,
@@ -21,7 +25,7 @@ pub enum Value {
     King,
 }
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub enum Suite {
     Spade,
     Heart,
@@ -29,9 +33,12 @@ pub enum Suite {
     Diamond,
 }
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Card(pub Value, pub Suite);
 
 pub struct Deck {
     cards: [Card; 52],
 }
+
+#[derive(Debug, PartialEq)]
+pub struct Hand(pub Card, pub Card, pub Card, pub Card);
