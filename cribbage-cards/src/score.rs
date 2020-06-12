@@ -112,8 +112,9 @@ fn find_seqs(mut vals: &[u32]) -> &[u32] {
     while vals.len() > 2 {
         let mut value = vals[0];
         let mut idx = 0;
-        for i in 1..vals.len() {
-            if vals[i] != value && vals[i] != value + 1 {
+        for (i, val) in vals.iter().enumerate().skip(1) {
+            let val = *val;
+            if val != value && val != value + 1 {
                 break;
             }
 
@@ -135,7 +136,7 @@ fn find_seqs(mut vals: &[u32]) -> &[u32] {
 }
 
 fn dups(vals: &[u32]) -> (u32, u32) {
-    if vals.len() == 0 {
+    if vals.is_empty() {
         return (0, 0);
     }
 

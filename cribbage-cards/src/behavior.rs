@@ -67,7 +67,18 @@ impl Card {
 }
 
 impl Deck {
-    pub fn new() -> Deck {
+    pub fn shuffle(&mut self) {
+        for _ in 0..5000 {
+            let a = rand::random::<usize>() % 52;
+            let b = rand::random::<usize>() % 52;
+
+            self.cards.swap(a, b);
+        }
+    }
+}
+
+impl Default for Deck {
+    fn default() -> Deck {
         let mut cards = [Card(Value::Ace, Suite::Spade); 52];
         let mut i = 0;
 
@@ -80,16 +91,5 @@ impl Deck {
         }
 
         Deck { cards }
-    }
-
-    pub fn shuffle(&mut self) {
-        for _ in 0..5000 {
-            let a = rand::random::<usize>() % 52;
-            let b = rand::random::<usize>() % 52;
-
-            let swap = self.cards[a];
-            self.cards[a] = self.cards[b];
-            self.cards[b] = swap;
-        }
     }
 }

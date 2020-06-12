@@ -19,7 +19,7 @@ impl<'a, T> Combinations<'a, T> {
         let size = size;
 
         let mut pos: Vec<usize> = (0..size).rev().collect();
-        pos[0] = pos[0] - 1;
+        pos[0] -= 1;
 
         Combinations { underlying, pos }
     }
